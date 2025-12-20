@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { DefaultButton } from './components/default-button/default-button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, DefaultButton],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -1,0 +1,16 @@
+button{
+    height: 44px;
+    padding-inline: 2rem;
+    border-radius: 10px;
+
+    border-width: 0px;
+    background-color: var(--jz-light-blue);
+    color: white;
+
+    text-transform: uppercase;
+}
+
+button:hover{
+    background-color: var(--jz-dark-blue);
+    cursor: pointer;
+}
