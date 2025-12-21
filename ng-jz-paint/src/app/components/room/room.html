@@ -1,19 +1,22 @@
 <div class="card">
     <div class="row">
         <h3>Ceiling:</h3>
-        <default-input placeholder="Length (ft)"></default-input>
+        <default-input [(value)]="ceilingLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>X</h3>
-        <default-input placeholder="Width (ft)"></default-input>
+        <default-input [(value)]="ceilingWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{totalSqft}} SQFT for a total of ${{calculatedPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{ceilingSqft}} SQFT for a total of ${{ceilingTotalPrice}}</h3>
     </div>
 
     <div class="row">
-        <h3>Wall #1:</h3>
-        <default-input placeholder="Length (ft)"></default-input>
+        <h3>Walls:</h3>
+        <default-input [(value)]="wallLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>X</h3>
-        <default-input placeholder="Width (ft)"></default-input>
+        <default-input [(value)]="wallWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
+        <h3>X</h3>
+        <default-input [(value)]="wallHeight" placeholder="Height (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
+        <h3 style="margin-left: 15px;">{{wallSqft}} SQFT for a total of ${{wallTotalPrice}}</h3>
     </div>
 
 </div>

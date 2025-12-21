@@ -1,6 +1,5 @@
 .card{
 
-    border: 2px var(--jz-light-blue) solid;
     height: 20vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
@@ -8,11 +7,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--jz-light-blue), var(--jz-dark-blue));
+    transition: background 0.1s ease;
 
 }
 
 h3{
     font-style: bold;
+    color: white;
 }
 
 .row {
