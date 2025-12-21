@@ -1,6 +1,5 @@
 .card{
 
-    height: 20vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
     display: flex;
@@ -22,5 +21,9 @@ h3{
     display: flex;
     flex-direction: row;
 
+}
+
+default-button {
+    margin: 30px;
 }
 

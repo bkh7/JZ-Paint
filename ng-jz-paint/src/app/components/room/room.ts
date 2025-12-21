@@ -19,6 +19,7 @@ export class Room {
   wallLength: string = '0';
   wallWidth: string = '0';
   wallHeight: string = '0';
+  roomName: string = '';
 
   //Pricing
   wallPricePerSqft: number = 0.75;
