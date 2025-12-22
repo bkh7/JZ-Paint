@@ -27,10 +27,30 @@
     </div>
 
     <div class="row">
-        <default-button [text]="'Add Trim'">Add Trim</default-button>
-        <default-button [text]="'Add Window Frame'">Add Window Frame</default-button>
-        <default-button [text]="'Add Door Frame'">Add Door Frame</default-button>
-        <default-button [text]="'Add Side of Door'">Add Side of Door</default-button>
+        <h3>Trim:</h3>
+        <default-input [(value)]="trimLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
+        <h3>X</h3>
+        <default-input [(value)]="trimWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
+        <h3>=</h3>
+        <h3 style="margin-left: 15px;">{{trimSqft}} SQFT for a total of ${{trimTotalPrice}}</h3>
+    </div>
+
+    <div class="row">
+        <h3>Additional items:</h3>
+        <default-input [(value)]="numDoorFaces" placeholder="# of Door Faces"
+            (valueChange)="onValueChange()"></default-input>
+        <h3>+</h3>
+        <default-input [(value)]="numDoorFrames" placeholder="# of Door Frames"
+            (valueChange)="onValueChange()"></default-input>
+        <h3>+</h3>
+        <default-input [(value)]="numWindowFrames" placeholder="# of Window Frames"
+            (valueChange)="onValueChange()"></default-input>
+        <h3>=</h3>
+        <h3 style="margin-left: 15px;">{{numAddons}} addons for a total of ${{addonTotalPrice}}</h3>
+    </div>
+
+    <div class="row">
+        <h2>Total Price: ${{totalPrice}}</h2>
     </div>
 
 </div>
