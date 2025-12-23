@@ -3,12 +3,10 @@
     <default-input [(value)]="quoteData.quoteName" placeholder="Quote for:"></default-input>
 
     <div class="rooms-container">
-
-        <room></room>
-
+        <room *ngFor="let room of quoteData.rooms"></room> <!-- Loop over rooms array -->
     </div>
 
-    <default-button text="+ ADD ROOM"></default-button>
+    <default-button text="+ ADD ROOM" (click)="addRoom()"></default-button>
     <default-button text="SAVE QUOTE" (click)="saveQuote()"></default-button>
 
 </div>

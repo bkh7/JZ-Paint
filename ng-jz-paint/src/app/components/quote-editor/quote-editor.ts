@@ -5,10 +5,11 @@ import { DefaultButton } from '../default-button/default-button';
 import { QuoteInterface } from '../../interfaces/quote-interface';
 import { RoomInterface } from '../../interfaces/room-interface';
 import { Firestore, collection, doc, addDoc } from '@angular/fire/firestore'; // Added for Firestore
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'quote-editor',
-  imports: [DefaultInput, Room, DefaultButton],
+  imports: [DefaultInput, Room, DefaultButton, CommonModule],
   templateUrl: './quote-editor.html',
   styleUrl: './quote-editor.scss',
 })
