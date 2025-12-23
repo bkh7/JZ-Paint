@@ -27,18 +27,19 @@ export class QuoteEditor implements OnInit {
   constructor(private firestore: Firestore, private appState: AppStateService) {} // Added constructor for Firestore
 
  async ngOnInit() {
-  const quoteDocId = this.appState.currentQuoteId()?.toString();
+  const quoteDocId = this.appState.currentQuoteId()?.toString(); //store current quote id from app state
   if (quoteDocId) {
     const quoteRef = doc(this.firestore, 'quotes', quoteDocId);
-    const quoteSnap = await getDoc(quoteRef);
+    const quoteSnap = await getDoc(quoteRef); //get current quote document
 
     if (quoteSnap.exists()) {
-      const data = quoteSnap.data() as QuoteInterface;
-      this.quoteData.quoteName = data.quoteName;
+      const data = quoteSnap.data() as QuoteInterface; //cast data from firestore to QuoteInterface
+      //assign to local variables to see in the editor
+      this.quoteData.quoteName = data.quoteName; 
       this.quoteData.numberOfRooms = data.numberOfRooms;
       this.quoteData.totalPrice = data.totalPrice;
       this.quoteData.rooms = Array.isArray(data.rooms) && data.rooms.length > 0
-        ? data.rooms
+        ? data.rooms //create empty room if no rooms exist
         : [this.createEmptyRoom()];
     }
   }
