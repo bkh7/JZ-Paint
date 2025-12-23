@@ -1,6 +1,7 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { DefaultButton } from '../default-button/default-button';
 import { DefaultInput } from '../default-input/default-input';
+import { RoomInterface } from '../../interfaces/room-interface';
 
 @Component({
   selector: 'room',
@@ -10,23 +11,37 @@ import { DefaultInput } from '../default-input/default-input';
 })
 export class Room {
 
+  roomData: RoomInterface = {
+    roomName: '',
+    wallLength: '',
+    wallWidth: '',
+    wallHeight: '',
+    wallArea: '',
+    ceilingLength: '',
+    ceilingWidth: '',
+    ceilingArea: '',
+    trimLength: '',
+    trimWidth: '',
+    trimArea: '',
+    numDoorFaces: '',
+    numDoorFrames: '',
+    numWindowFrames: '',
+    numAddons: '0',
+    wallPrice: '',
+    ceilingPrice: '',
+    trimPrice: '',
+    doorFacePrice: '',
+    doorFramePrice: '',
+    windowFramePrice: '',
+    addonTotalPrice: '',
+    totalRoomPrice: '',
+  };
+
+
   ceilingSqft: number = 0;
   wallSqft: number = 0;
   trimSqft: number = 0;
 
-  //Two-way binding variables for inputs
-  ceilingLength: string = '';
-  ceilingWidth: string = '';
-  wallLength: string = '';
-  wallWidth: string = '';
-  wallHeight: string = '';
-  trimLength: string = '';
-  trimWidth: string = '';
-  roomName: string = '';
-  numDoorFaces: string = '';
-  numDoorFrames: string = '';
-  numWindowFrames: string = '';
-  numAddons: string = '0';
 
   //Pricing
   wallPricePerSqft: number = 0.75;
@@ -35,15 +50,7 @@ export class Room {
   pricerPerDoorFace: number = 40.00;
   pricePerDoorFrame: number = 40.00
   pricePerWindowFrame: number = 40.00;
-  //Calculated prices
-  wallTotalPrice: number = 0;
-  ceilingTotalPrice: number = 0;
-  trimTotalPrice: number = 0;
-  doorFaceTotalPrice: number = 0;
-  doorFrameTotalPrice: number = 0
-  windowFrameTotalPrice: number = 0;
-  addonTotalPrice: number = 0;
-  totalPrice: number = 0;
+  
 
   constructor(private el: ElementRef) {}
 
@@ -58,7 +65,7 @@ export class Room {
 
   onValueChange(){
 
-    this.numAddons = ((parseInt(this.numDoorFaces) || 0) + (parseInt(this.numDoorFrames) || 0) + (parseInt(this.numWindowFrames) || 0)).toString();
+    this.roomData.numAddons = ((parseInt(this.roomData.numDoorFaces) || 0) + (parseInt(this.roomData.numDoorFrames) || 0) + (parseInt(this.roomData.numWindowFrames) || 0)).toString();
     this.calculateSqft();
     this.calculatePrice();
 
@@ -66,31 +73,31 @@ export class Room {
 
   calculateSqft() {
 
-    const ceilingArea = (parseFloat(this.ceilingLength) || 0) * (parseFloat(this.ceilingWidth) || 0);
+    const ceilingArea = (parseFloat(this.roomData.ceilingLength) || 0) * (parseFloat(this.roomData.ceilingWidth) || 0);
     this.ceilingSqft = ceilingArea;
 
-    const wallArea = 2 * ((parseFloat(this.wallLength) || 0) + (parseFloat(this.wallWidth) || 0)) * (parseFloat(this.wallHeight) || 0);
+    const wallArea = 2 * ((parseFloat(this.roomData.wallLength) || 0) + (parseFloat(this.roomData.wallWidth) || 0)) * (parseFloat(this.roomData.wallHeight) || 0);
     this.wallSqft = wallArea;
 
-    const trimArea = (parseFloat(this.trimLength) || 0) * (parseFloat(this.trimWidth) || 0);
+    const trimArea = (parseFloat(this.roomData.trimLength) || 0) * (parseFloat(this.roomData.trimWidth) || 0);
     this.trimSqft = trimArea;
 
   }
 
   calculatePrice() {
 
-    this.ceilingTotalPrice = this.ceilingSqft * this.ceilingPricePerSqft;
-    this.wallTotalPrice = this.wallSqft * this.wallPricePerSqft;
-    this.trimTotalPrice = this.trimSqft * this.trimPricePerSqft;
+    this.roomData.ceilingPrice = (this.ceilingSqft * this.ceilingPricePerSqft).toString();
+    this.roomData.wallPrice = (this.wallSqft * this.wallPricePerSqft).toString();
+    this.roomData.trimPrice = (this.trimSqft * this.trimPricePerSqft).toString();
 
-    this.doorFaceTotalPrice = (parseInt(this.numDoorFaces) || 0) * this.pricerPerDoorFace;
-    this.doorFrameTotalPrice = (parseInt(this.numDoorFrames) || 0) * this.pricePerDoorFrame;
-    this.windowFrameTotalPrice = (parseInt(this.numWindowFrames) || 0) * this.pricePerWindowFrame;
+    this.roomData.doorFacePrice = ((parseInt(this.roomData.numDoorFaces) || 0) * this.pricerPerDoorFace).toString();
+    this.roomData.doorFramePrice = ((parseInt(this.roomData.numDoorFrames) || 0) * this.pricePerDoorFrame).toString();
+    this.roomData.windowFramePrice = ((parseInt(this.roomData.numWindowFrames) || 0) * this.pricePerWindowFrame).toString();
     
-    this.addonTotalPrice = this.doorFaceTotalPrice + this.doorFrameTotalPrice + this.windowFrameTotalPrice;
+    this.roomData.addonTotalPrice = ((parseFloat(this.roomData.doorFacePrice) || 0) + (parseFloat(this.roomData.doorFramePrice) || 0) + (parseFloat(this.roomData.windowFramePrice) || 0)).toString();
  
  
-    this.totalPrice = this.ceilingTotalPrice + this.wallTotalPrice + this.trimTotalPrice + this.addonTotalPrice;
+    this.roomData.totalRoomPrice = ((parseFloat(this.roomData.ceilingPrice) || 0) + (parseFloat(this.roomData.wallPrice) || 0) + (parseFloat(this.roomData.trimPrice) || 0) + (parseFloat(this.roomData.addonTotalPrice) || 0)).toString();
   }
 
 }

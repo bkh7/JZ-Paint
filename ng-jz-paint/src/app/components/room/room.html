@@ -1,56 +1,56 @@
 <div class="card">
 
     <div class="row">
-        <default-input [(value)]="roomName" placeholder="Room Name"></default-input>
+        <default-input [(value)]="roomData.roomName" placeholder="Room Name"></default-input>
     </div>
 
     <div class="row">
         <h3>Ceiling:</h3>
-        <default-input [(value)]="ceilingLength" placeholder="Length (ft)"
+        <default-input [(value)]="roomData.ceilingLength" placeholder="Length (ft)"
             (valueChange)="onValueChange()"></default-input>
         <h3>X</h3>
-        <default-input [(value)]="ceilingWidth" placeholder="Width (ft)"
+        <default-input [(value)]="roomData.ceilingWidth" placeholder="Width (ft)"
             (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{ceilingSqft}} SQFT for a total of ${{ceilingTotalPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{ceilingSqft}} SQFT for a total of ${{roomData.ceilingPrice}}</h3>
     </div>
 
     <div class="row">
         <h3>Walls:</h3>
-        <default-input [(value)]="wallLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
+        <default-input [(value)]="roomData.wallLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>X</h3>
-        <default-input [(value)]="wallWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
+        <default-input [(value)]="roomData.wallWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>X</h3>
-        <default-input [(value)]="wallHeight" placeholder="Height (ft)" (valueChange)="onValueChange()"></default-input>
+        <default-input [(value)]="roomData.wallHeight" placeholder="Height (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{wallSqft}} SQFT for a total of ${{wallTotalPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{wallSqft}} SQFT for a total of ${{roomData.wallPrice}}</h3>
     </div>
 
     <div class="row">
         <h3>Trim:</h3>
-        <default-input [(value)]="trimLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
+        <default-input [(value)]="roomData.trimLength" placeholder="Length (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>X</h3>
-        <default-input [(value)]="trimWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
+        <default-input [(value)]="roomData.trimWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{trimSqft}} SQFT for a total of ${{trimTotalPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{trimSqft}} SQFT for a total of ${{roomData.trimPrice}}</h3>
     </div>
 
     <div class="row">
         <h3>Additional items:</h3>
-        <default-input [(value)]="numDoorFaces" placeholder="# of Door Faces"
+        <default-input [(value)]="roomData.numDoorFaces" placeholder="# of Door Faces"
             (valueChange)="onValueChange()"></default-input>
         <h3>+</h3>
-        <default-input [(value)]="numDoorFrames" placeholder="# of Door Frames"
+        <default-input [(value)]="roomData.numDoorFrames" placeholder="# of Door Frames"
             (valueChange)="onValueChange()"></default-input>
         <h3>+</h3>
-        <default-input [(value)]="numWindowFrames" placeholder="# of Window Frames"
+        <default-input [(value)]="roomData.numWindowFrames" placeholder="# of Window Frames"
             (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{numAddons}} addons for a total of ${{addonTotalPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{roomData.numAddons}} addons for a total of ${{roomData.addonTotalPrice}}</h3>
     </div>
 
     <div class="row">
-        <h2>Room Price: ${{totalPrice}}</h2>
+        <h2>Room Price: ${{roomData.totalRoomPrice}}</h2>
     </div>
 
 </div>
