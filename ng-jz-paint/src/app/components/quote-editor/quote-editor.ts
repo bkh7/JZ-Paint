@@ -6,6 +6,7 @@ import { QuoteInterface } from '../../interfaces/quote-interface';
 import { RoomInterface } from '../../interfaces/room-interface';
 import { Firestore, collection, doc, addDoc } from '@angular/fire/firestore'; // Added for Firestore
 import { CommonModule } from '@angular/common';
+import { AppStateService } from '../../services/app-state';
 
 @Component({
   selector: 'quote-editor',
