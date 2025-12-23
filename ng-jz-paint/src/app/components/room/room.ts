@@ -1,11 +1,10 @@
 import { Component, HostListener, ElementRef, Input } from '@angular/core';
-import { DefaultButton } from '../default-button/default-button';
 import { DefaultInput } from '../default-input/default-input';
 import { RoomInterface } from '../../interfaces/room-interface';
 
 @Component({
   selector: 'room',
-  imports: [DefaultButton, DefaultInput],
+  imports: [DefaultInput],
   templateUrl: './room.html',
   styleUrl: './room.scss',
 })
