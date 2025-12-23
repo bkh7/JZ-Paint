@@ -3,10 +3,11 @@ import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AppStateService } from '../../services/app-state';
+import { DefaultButton } from '../default-button/default-button';
 
 @Component({
   selector: 'quotes-view',
-  imports: [AsyncPipe, CommonModule],
+  imports: [AsyncPipe, CommonModule, DefaultButton],
   templateUrl: './quotes-view.html',
   styleUrl: './quotes-view.scss',
 })
@@ -18,7 +19,7 @@ export class QuotesView {
     this.quotes$ = collectionData(quotesCollection, { idField: 'id' });
   }
 
-  cardClicked(quoteId: string){
+  handleClick(quoteId: string){
 
     this.appState.currentView.set('quote-editor');
     this.appState.currentQuoteId.set(quoteId);
