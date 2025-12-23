@@ -4,5 +4,5 @@ import { Injectable, signal } from '@angular/core';
 export class AppStateService {
   // Example state signals
   currentView = signal<'menu' | 'quotes-list' | 'quote-editor'>('menu');
-  // Add more state as needed
+  currentQuoteId = signal<string | null>(null);
 }

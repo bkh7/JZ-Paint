@@ -3,7 +3,7 @@
     <h1>YOUR QUOTES</h1>
 
     <div *ngIf="(quotes$ | async) as quotesList">
-        <div *ngFor="let quote of quotesList" class="quote-card">
+        <div *ngFor="let quote of quotesList" class="quote-card" (click)="cardClicked(quote.id)">
             <h2>Quote For: {{quote.quoteName}}</h2>
             <p>Quoted Price: ${{quote.totalPrice}}</p>
         </div>

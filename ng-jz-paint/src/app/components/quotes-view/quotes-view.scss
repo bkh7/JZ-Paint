@@ -2,15 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .quote-card{
-    width: 80%;
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
-    margin: 8px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 30px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.quote-card:hover{
+   background-color: var(--jz-light-blue);
+   cursor: pointer;
 }

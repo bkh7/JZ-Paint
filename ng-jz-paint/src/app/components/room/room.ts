@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
+import { Component, HostListener, ElementRef, Input } from '@angular/core';
 import { DefaultButton } from '../default-button/default-button';
 import { DefaultInput } from '../default-input/default-input';
 import { RoomInterface } from '../../interfaces/room-interface';
@@ -11,31 +11,8 @@ import { RoomInterface } from '../../interfaces/room-interface';
 })
 export class Room {
 
-  roomData: RoomInterface = {
-    roomName: '',
-    wallLength: '',
-    wallWidth: '',
-    wallHeight: '',
-    wallArea: '',
-    ceilingLength: '',
-    ceilingWidth: '',
-    ceilingArea: '',
-    trimLength: '',
-    trimWidth: '',
-    trimArea: '',
-    numDoorFaces: '',
-    numDoorFrames: '',
-    numWindowFrames: '',
-    numAddons: '0',
-    wallPrice: '',
-    ceilingPrice: '',
-    trimPrice: '',
-    doorFacePrice: '',
-    doorFramePrice: '',
-    windowFramePrice: '',
-    addonTotalPrice: '',
-    totalRoomPrice: '',
-  };
+  @Input() roomData!: RoomInterface;
+
 
 
   ceilingSqft: number = 0;

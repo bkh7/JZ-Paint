@@ -1,10 +1,10 @@
-import { Component, QueryList, ViewChildren } from '@angular/core'; // Added QueryList, ViewChildren
+import { Component, OnInit, QueryList, ViewChildren, Input } from '@angular/core'; // Added QueryList, ViewChildren
 import { DefaultInput } from '../default-input/default-input';
 import { Room } from '../room/room';
 import { DefaultButton } from '../default-button/default-button';
 import { QuoteInterface } from '../../interfaces/quote-interface';
 import { RoomInterface } from '../../interfaces/room-interface';
-import { Firestore, collection, doc, addDoc } from '@angular/fire/firestore'; // Added for Firestore
+import { Firestore, collection, doc, addDoc, getDoc, getDocs } from '@angular/fire/firestore'; // Added for Firestore
 import { CommonModule } from '@angular/common';
 import { AppStateService } from '../../services/app-state';
 
@@ -14,17 +14,35 @@ import { AppStateService } from '../../services/app-state';
   templateUrl: './quote-editor.html',
   styleUrl: './quote-editor.scss',
 })
-export class QuoteEditor {
+export class QuoteEditor implements OnInit {
   quoteData: QuoteInterface = {
     quoteName: '',
     numberOfRooms: '0',
     totalPrice: '0',
-    rooms: [this.createEmptyRoom()], // Start with one room
+    rooms: [], // Start with one room
   };
 
   @ViewChildren(Room) roomComponents!: QueryList<Room>; // Queries all <room> components
 
-  constructor(private firestore: Firestore) {} // Added constructor for Firestore
+  constructor(private firestore: Firestore, private appState: AppStateService) {} // Added constructor for Firestore
+
+ async ngOnInit() {
+  const quoteDocId = this.appState.currentQuoteId()?.toString();
+  if (quoteDocId) {
+    const quoteRef = doc(this.firestore, 'quotes', quoteDocId);
+    const quoteSnap = await getDoc(quoteRef);
+
+    if (quoteSnap.exists()) {
+      const data = quoteSnap.data() as QuoteInterface;
+      this.quoteData.quoteName = data.quoteName;
+      this.quoteData.numberOfRooms = data.numberOfRooms;
+      this.quoteData.totalPrice = data.totalPrice;
+      this.quoteData.rooms = Array.isArray(data.rooms) && data.rooms.length > 0
+        ? data.rooms
+        : [this.createEmptyRoom()];
+    }
+  }
+}
 
   createEmptyRoom(): RoomInterface {
     return {

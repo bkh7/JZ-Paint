@@ -3,7 +3,7 @@
     <default-input [(value)]="quoteData.quoteName" placeholder="Quote for:"></default-input>
 
     <div class="rooms-container">
-        <room *ngFor="let room of quoteData.rooms"></room> <!-- Loop over rooms array -->
+        <room *ngFor="let room of quoteData.rooms" [roomData]="room"></room> <!-- Loop over rooms array -->
     </div>
 
     <default-button text="+ ADD ROOM" (click)="addRoom()"></default-button>
