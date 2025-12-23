@@ -6,10 +6,11 @@ import { Room } from './components/room/room';
 import { QuoteEditor } from "./components/quote-editor/quote-editor";
 import { AppStateService } from './services/app-state';
 import { CommonModule } from '@angular/common';
+import { QuotesView } from './components/quotes-view/quotes-view';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DefaultButton, DefaultInput, Room, QuoteEditor, CommonModule],
+  imports: [RouterOutlet, QuoteEditor, CommonModule, QuotesView],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -19,7 +20,7 @@ export class App implements OnInit{
   constructor(public appState: AppStateService) {}
 
   ngOnInit() {
-    this.appState.currentView.set('quote-editor');
+    this.appState.currentView.set('quotes-list');
     console.log('App initialized, current view set to menu');
   }
 }

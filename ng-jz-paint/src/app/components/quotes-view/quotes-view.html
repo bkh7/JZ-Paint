@@ -1,1 +1,13 @@
-<p>quotes-view works!</p>
+<div class="main-container">
+
+    <h1>YOUR QUOTES</h1>
+
+    <div *ngIf="(quotes$ | async) as quotesList">
+        <div *ngFor="let quote of quotesList" class="quote-card">
+            <h2>Quote For: {{quote.quoteName}}</h2>
+            <p>Quoted Price: ${{quote.totalPrice}}</p>
+        </div>
+
+    </div>
+
+</div>
