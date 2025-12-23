@@ -99,5 +99,10 @@ export class QuoteEditor implements OnInit {
       await addDoc(quotesCollection, this.quoteData);
       console.log('Quote created');
     }
+
+    //update app state to reflect changes
+    this.appState.currentView.set('quotes-list'); // Return to quote list view after saving
+    this.appState.currentQuoteId.set(null); // Clear current quote ID
+
   }
 }
