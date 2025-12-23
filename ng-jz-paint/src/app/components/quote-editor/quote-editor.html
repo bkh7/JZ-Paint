@@ -1,6 +1,6 @@
 <div class="main-container">
 
-    <default-input [(value)]="quoteName" placeholder="Quote for:"></default-input>
+    <default-input [(value)]="quoteData.quoteName" placeholder="Quote for:"></default-input>
 
     <div class="rooms-container">
 
@@ -9,6 +9,6 @@
     </div>
 
     <default-button text="+ ADD ROOM"></default-button>
-    <default-button text="SAVE QUOTE"></default-button>
+    <default-button text="SAVE QUOTE" (click)="saveQuote()"></default-button>
 
 </div>
