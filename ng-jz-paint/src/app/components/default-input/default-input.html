@@ -1,1 +1,1 @@
-<input [value]="value" (input)="onInputChange($event)" [placeholder]="placeholder" type="text">
+<input [value]="value" (input)="onInputChange($event)" [placeholder]="placeholder" (blur)="onBlur.emit()" type="text">

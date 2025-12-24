@@ -24,7 +24,7 @@ export class QuoteEditor implements OnInit {
 
   @ViewChildren(Room) roomComponents!: QueryList<Room>; // Queries all <room> components
 
-  constructor(private firestore: Firestore, private appState: AppStateService) { } // Added constructor for Firestore
+  constructor(private firestore: Firestore, public appState: AppStateService) { } // Added constructor for Firestore
 
   async ngOnInit() {
     const quoteDocId = this.appState.currentQuoteId()?.toString(); //store current quote id from app state
@@ -111,5 +111,15 @@ export class QuoteEditor implements OnInit {
   }
 
   async deleteQuote() {}
+
+  makeTitleEditable() {
+    this.appState.quoteTitleEditable.set(true);
+    console.log('Title editable set to true');
+  }
+
+  makeTitleNonEditable() {
+    this.appState.quoteTitleEditable.set(false);
+    console.log('Title editable set to false');
+  }
 
 }
