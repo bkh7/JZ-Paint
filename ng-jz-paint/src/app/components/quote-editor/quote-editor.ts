@@ -110,7 +110,17 @@ export class QuoteEditor implements OnInit {
 
   }
 
-  async deleteQuote() {}
+  async deleteQuote() {
+    const quoteDocId = this.appState.currentQuoteId()?.toString();
+    if (quoteDocId) {
+      const quoteRef = doc(this.firestore, 'quotes', quoteDocId);
+      await setDoc(quoteRef, {}, { merge: false }); // Overwrite with empty data to "delete"
+      console.log('Quote deleted');
+      //update app state to reflect changes
+      this.appState.currentView.set('quotes-list'); // Return to quote list view after deletion
+      this.appState.currentQuoteId.set(null); // Clear current quote ID
+    }
+  }
 
   makeTitleEditable() {
     this.appState.quoteTitleEditable.set(true);
