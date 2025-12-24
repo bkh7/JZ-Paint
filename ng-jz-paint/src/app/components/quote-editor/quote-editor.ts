@@ -40,17 +40,17 @@ export class QuoteEditor implements OnInit {
         this.quoteData.totalPrice = data.totalPrice;
         this.quoteData.rooms = Array.isArray(data.rooms) && data.rooms.length > 0
           ? data.rooms //create empty room if no rooms exist
-          : [this.createEmptyRoom()];
+          : [this.createRoom()];
       }
     }
   }
 
-  createEmptyRoom(): RoomInterface {
+  createRoom(length?: string, width?: string, height?: string): RoomInterface {
     return {
       roomName: '',
-      wallLength: '',
-      wallWidth: '',
-      wallHeight: '',
+      wallLength: length || '',
+      wallWidth: width || '',
+      wallHeight: height || '',
       wallArea: '',
       ceilingLength: '',
       ceilingWidth: '',
@@ -73,8 +73,12 @@ export class QuoteEditor implements OnInit {
     };
   }
 
-  addRoom() {
-    this.quoteData.rooms.push(this.createEmptyRoom());
+  addEmptyRoom() {
+    this.quoteData.rooms.push(this.createRoom());
+  }
+
+  addTenByTenRoom() {
+    this.quoteData.rooms.push(this.createRoom('10', '10', '8'));
   }
 
   async saveQuote() {
@@ -105,4 +109,7 @@ export class QuoteEditor implements OnInit {
     this.appState.currentQuoteId.set(null); // Clear current quote ID
 
   }
+
+  async deleteQuote() {}
+
 }
