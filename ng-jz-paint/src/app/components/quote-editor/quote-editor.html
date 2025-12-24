@@ -1,5 +1,8 @@
 <div class="main-container">
 
+    <verify-delete-modal *ngIf="appState.deleteModalVisible()" (confirmDelete)="deleteQuote()"></verify-delete-modal>
+
+
     <default-input *ngIf="appState.quoteTitleEditable()" [(value)]="quoteData.quoteName"
         placeholder="Quote for:" (onBlur)="makeTitleNonEditable()"></default-input>
 
@@ -21,8 +24,7 @@
     </div>
 
     <div class="delete-container">
-        <default-button text="DELETE QUOTE" (click)="deleteQuote()" class="red-button"></default-button>
+        <default-button text="DELETE QUOTE" (click)="requestDelete()" class="red-button"></default-button>
     </div>
-
 
 </div>

@@ -6,4 +6,5 @@ export class AppStateService {
   currentView = signal<'menu' | 'quotes-list' | 'quote-editor'>('menu');
   currentQuoteId = signal<string | null>(null);
   quoteTitleEditable = signal<boolean>(false);
+  deleteModalVisible = signal<boolean>(false);
 }

@@ -7,10 +7,11 @@ import { QuoteEditor } from "./components/quote-editor/quote-editor";
 import { AppStateService } from './services/app-state';
 import { CommonModule } from '@angular/common';
 import { QuotesView } from './components/quotes-view/quotes-view';
+import { VerifyDeleteModal } from './components/verify-delete-modal/verify-delete-modal';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, QuoteEditor, CommonModule, QuotesView],
+  imports: [RouterOutlet, QuoteEditor, CommonModule, QuotesView, VerifyDeleteModal],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

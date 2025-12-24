@@ -7,10 +7,11 @@ import { RoomInterface } from '../../interfaces/room-interface';
 import { Firestore, collection, doc, addDoc, getDoc, getDocs, setDoc } from '@angular/fire/firestore'; // Added for Firestore
 import { CommonModule } from '@angular/common';
 import { AppStateService } from '../../services/app-state';
+import { VerifyDeleteModal } from '../verify-delete-modal/verify-delete-modal';
 
 @Component({
   selector: 'quote-editor',
-  imports: [DefaultInput, Room, DefaultButton, CommonModule],
+  imports: [DefaultInput, Room, DefaultButton, CommonModule, VerifyDeleteModal],
   templateUrl: './quote-editor.html',
   styleUrl: './quote-editor.scss',
 })
@@ -108,6 +109,11 @@ export class QuoteEditor implements OnInit {
     this.appState.currentView.set('quotes-list'); // Return to quote list view after saving
     this.appState.currentQuoteId.set(null); // Clear current quote ID
 
+  }
+
+  requestDelete(){
+    this.appState.deleteModalVisible.set(true);
+    console.log(this.appState.currentView());
   }
 
   async deleteQuote() {
