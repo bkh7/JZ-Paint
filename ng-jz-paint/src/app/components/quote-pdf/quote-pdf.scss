@@ -1,0 +1,27 @@
+.logo{
+    width: 40px;
+    height: 40px;
+}
+.pdf{
+    display: flex;
+    flex-direction: column;
+    width: 8.5in;
+    border: 1px solid black;
+    justify-self: center;
+    padding: 1rem;
+}
+.header-col-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+h1{
+    color: var(--jz-light-blue);
+}
