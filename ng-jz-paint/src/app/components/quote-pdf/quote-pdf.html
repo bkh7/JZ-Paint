@@ -6,8 +6,8 @@
                 <img src="/JZ_Logo.jpeg" alt="JZ Paint Logo" class="logo">
                 <h1>JZ PAINT</h1>
             </div>
-            <h5>5464 Holiday Terrace</h5>
-            <h5>Kalamazoo, MI 49009</h5>
+            <h5>5464 Holiday Terrace, 49009</h5>
+            <h5>Kalamazoo, MI</h5>
             <h5>Phone: 269-352-6924</h5>
 
             <div class="data-header">
@@ -16,17 +16,17 @@
 
             </div>
 
-            <h5>Benjamin Hart</h5>
-            <h5>3327 48th Street, 49419</h5>
-            <h5>Hamilton, MI</h5>
-            <h5>Phone: 269-569-5261</h5>
+            <h5>{{quoteData?.quoteName}}</h5>
+            <h5>{{quoteData?.customerStreetAddress}}, {{quoteData?.customerZipCode}}</h5>
+            <h5>{{quoteData?.customerCity}}, MI</h5>
+            <h5>Phone: {{quoteData?.customerPhoneNumber}}</h5>
         </div>
         <div class="header-col-right">
 
             <h1>QUOTE</h1>
-            <h5>Date: 12/25/2025</h5>
-            <h5>Quote ID: 238435dsff4332</h5>
-            <h5>Customer ID: 123456</h5>
+            <h5>Date: {{quoteData?.dateModified}}</h5>
+            <h5>Quote ID: {{appState.currentQuoteId()}}</h5>
+            <h5>Customer ID: {{quoteData?.customerId}}</h5>
 
         </div>
 
@@ -35,42 +35,34 @@
 
 <div class="table-container">
 
-            <table class="items-table">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Tax</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Exterior House Painting</td>
-                        <td>1</td>
-                        <td>$3,500.00</td>
-                        <td>$3,500.00</td>
-                    </tr>
-                    <tr>
-                        <td>Deck Staining</td>
-                        <td>1</td>
-                        <td>$800.00</td>
-                        <td>$800.00</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" class="total-label">Subtotal:</td>
-                        <td class="total-value">$4,300.00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="total-label">Tax (6%):</td>
-                        <td class="total-value">$258.00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="total-label grand-total">Grand Total:</td>
-                        <td class="total-value grand-total">$4,558.00</td>
-                    </tr>
-            </table>
+            <!-- ...existing code... -->
+<table class="items-table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let room of quoteData?.rooms">
+            <td>{{ room.roomName }}</td>
+            <td>1</td>
+            <td>${{ room.totalRoomPrice }}</td>
+            <td>${{+room.totalRoomPrice * 0.06 | number:'1.2-2'}}</td>
+            <td>${{ (+room.totalRoomPrice + (+room.totalRoomPrice * 0.06)) | number:'1.2-2' }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="title-row">Quote Summary</td>
+            <td class="value-row">${{ (+quoteData.totalPrice + (+quoteData.totalPrice * 0.06)) | number:'1.2-2' }}</td>
+                
+        </tr>
+    </tfoot>
+</table>
+<!-- ...existing code... -->
     </div>
 </div>

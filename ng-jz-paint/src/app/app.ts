@@ -22,7 +22,7 @@ export class App implements OnInit{
   constructor(public appState: AppStateService) {}
 
   ngOnInit() {
-    this.appState.currentView.set('quote-pdf');
+    this.appState.currentView.set('quotes-list');
     console.log('App initialized, current view set to quote-pdf');
   }
 }

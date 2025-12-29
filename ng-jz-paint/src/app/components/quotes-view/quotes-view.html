@@ -3,14 +3,14 @@
     <h1>YOUR QUOTES</h1>
 
     <div *ngIf="(quotes$ | async) as quotesList">
-        <div *ngFor="let quote of quotesList" class="quote-card" (click)="handleClick(quote.id)">
+        <div *ngFor="let quote of quotesList" class="quote-card" (click)="handleExistingClick(quote.id)">
             <h2>Quote For: {{quote.quoteName}}</h2>
             <p>Quoted Price: ${{quote.totalPrice}}</p>
         </div>
 
     </div>
 
-    <default-button text="+ NEW QUOTE" (click)="handleClick('')"></default-button>
+    <default-button text="+ NEW QUOTE" (click)="handleNewClick('')"></default-button>
 
 
 

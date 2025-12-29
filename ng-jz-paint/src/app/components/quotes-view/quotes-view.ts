@@ -19,7 +19,14 @@ export class QuotesView {
     this.quotes$ = collectionData(quotesCollection, { idField: 'id' });
   }
 
-  handleClick(quoteId: string){
+  handleExistingClick(quoteId: string){
+
+    this.appState.currentView.set('quote-pdf');
+    this.appState.currentQuoteId.set(quoteId);
+
+  }
+
+   handleNewClick(quoteId: string){
 
     this.appState.currentView.set('quote-editor');
     this.appState.currentQuoteId.set(quoteId);

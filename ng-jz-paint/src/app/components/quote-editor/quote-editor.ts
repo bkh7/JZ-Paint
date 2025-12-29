@@ -18,10 +18,17 @@ import { VerifyDeleteModal } from '../verify-delete-modal/verify-delete-modal';
 export class QuoteEditor implements OnInit {
   quoteData: QuoteInterface = {
     quoteName: '',
+    dateModified: '',
+    customerId: '',
+    customerStreetAddress: '',
+    customerZipCode: '',
+    customerCity: '',
+    customerPhoneNumber: '',
     numberOfRooms: '0',
     totalPrice: '0',
     rooms: [], // Start with one room
   };
+
 
   @ViewChildren(Room) roomComponents!: QueryList<Room>; // Queries all <room> components
 
@@ -82,6 +89,32 @@ export class QuoteEditor implements OnInit {
     this.quoteData.rooms.push(this.createRoom('10', '10', '8'));
   }
 
+  generateCustomerId(): string {
+    var customerInitials = '';
+    var idNumber = '';
+    var id = '';
+    const idLength = 7;
+    var i = 1;
+
+    if (!this.quoteData.quoteName) {
+      customerInitials = '';
+      return '';
+    }
+    customerInitials = this.quoteData.quoteName
+      .split(' ')
+      .filter(word => word.length > 1)
+      .map(word => word[0].toUpperCase())
+      .join('');
+
+    while(i <= idLength - 2) {
+      idNumber += Math.floor(Math.random() * 10).toString(); //number between 0-9
+      i++;
+    }
+    id = customerInitials + idNumber;
+    return id;
+      
+  }
+
   async saveQuote() {
     console.log('Saving quote...');
     // Collect data from room components via @ViewChildren
@@ -91,6 +124,13 @@ export class QuoteEditor implements OnInit {
     this.quoteData.numberOfRooms = collectedRooms.length.toString();
     this.quoteData.totalPrice = collectedRooms.reduce((sum, room) => sum + (parseFloat(room.totalRoomPrice) || 0), 0).toString();
     this.quoteData.rooms = collectedRooms;
+    this.quoteData.customerId = this.generateCustomerId();
+    this.quoteData.dateModified = new Date().toISOString();
+    this.quoteData.customerStreetAddress = '6969 Test St'
+    this.quoteData.customerZipCode = '12345'
+    this.quoteData.customerCity = 'Testville'
+    this.quoteData.customerPhoneNumber = '555-123-4567'
+
 
     const quoteDocId = this.appState.currentQuoteId()?.toString();
     if (quoteDocId) { //update existing document
@@ -111,7 +151,7 @@ export class QuoteEditor implements OnInit {
 
   }
 
-  requestDelete(){
+  requestDelete() {
     this.appState.deleteModalVisible.set(true);
     console.log(this.appState.currentView());
   }
