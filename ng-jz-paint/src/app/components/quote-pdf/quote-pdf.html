@@ -31,40 +31,46 @@
         </div>
 
 
-</div>
+    </div>
 
-<div class="table-container">
+    <div class="table-container">
 
-            <!-- ...existing code... -->
-<table class="items-table">
-    <thead>
-        <tr>
-            <th>Description</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-            <th>Tax</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let room of quoteData?.rooms">
-            <td>{{ room.roomName }}</td>
-            <td>1</td>
-            <td>${{ room.totalRoomPrice }}</td>
-            <td>${{+room.totalRoomPrice * 0.06 | number:'1.2-2'}}</td>
-            <td>${{ (+room.totalRoomPrice + (+room.totalRoomPrice * 0.06)) | number:'1.2-2' }}</td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4" class="title-row">Quote Summary</td>
-            <td class="value-row">${{ (+quoteData.totalPrice + (+quoteData.totalPrice * 0.06)) | number:'1.2-2' }}</td>
-                
-        </tr>
-    </tfoot>
-</table>
-<!-- ...existing code... -->
+        <!-- ...existing code... -->
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Tax</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of quoteData?.rooms">
+                    <td>{{ room.roomName }}</td>
+                    <td>1</td>
+                    <td>${{ room.totalRoomPrice }}</td>
+                    <td>${{+room.totalRoomPrice * 0.06 | number:'1.2-2'}}</td>
+                    <td>${{ (+room.totalRoomPrice + (+room.totalRoomPrice * 0.06)) | number:'1.2-2' }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="title-row">Quote Summary</td>
+                    <td class="value-row">${{ (+quoteData.totalPrice + (+quoteData.totalPrice * 0.06)) | number:'1.2-2'
+                        }}</td>
+
+                </tr>
+            </tfoot>
+        </table>
+        <!-- ...existing code... -->
     </div>
 </div>
 
-    <default-button text="DOWNLOAD PDF" (click)="downloadPdf()"></default-button>
+<div class="download-button-container">
+
+    <default-button text="EDIT" (click)="editQuote()" class="edit-button"></default-button>
+    <default-button text="DOWNLOAD PDF" (click)="downloadPdf()" class="download-button"></default-button>
+
+</div>

@@ -101,3 +101,16 @@ h5 {
 .items-table tbody tr:nth-child(odd) {
     background-color: #fff;
 }
+
+/* Add this to your component's CSS file */
+.download-button-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* optional, for spacing */
+    flex-direction: column;
+}
+
+.download-button, .edit-button {
+    
+    margin: 5px; /* spacing between buttons */
+}

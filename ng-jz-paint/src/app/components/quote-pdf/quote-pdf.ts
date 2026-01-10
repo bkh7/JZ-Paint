@@ -41,4 +41,10 @@ downloadPdf() {
   }
 }
 
+editQuote() {
+
+  this.appState.currentView.set('quote-editor');
+
+}
+
 }
