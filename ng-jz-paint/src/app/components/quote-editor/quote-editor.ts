@@ -4,7 +4,7 @@ import { Room } from '../room/room';
 import { DefaultButton } from '../default-button/default-button';
 import { QuoteInterface } from '../../interfaces/quote-interface';
 import { RoomInterface } from '../../interfaces/room-interface';
-import { Firestore, collection, doc, addDoc, getDoc, getDocs, setDoc } from '@angular/fire/firestore'; // Added for Firestore
+import { Firestore, collection, doc, addDoc, getDoc, setDoc, deleteDoc } from '@angular/fire/firestore'; // Added for Firestore
 import { CommonModule } from '@angular/common';
 import { AppStateService } from '../../services/app-state';
 import { VerifyDeleteModal } from '../verify-delete-modal/verify-delete-modal';
@@ -162,7 +162,7 @@ export class QuoteEditor implements OnInit {
     const quoteDocId = this.appState.currentQuoteId()?.toString();
     if (quoteDocId) {
       const quoteRef = doc(this.firestore, 'quotes', quoteDocId);
-      await setDoc(quoteRef, {}, { merge: false }); // Overwrite with empty data to "delete"
+      await deleteDoc(quoteRef) // delete the document
       console.log('Quote deleted');
       //update app state to reflect changes
       this.appState.currentView.set('quotes-list'); // Return to quote list view after deletion
