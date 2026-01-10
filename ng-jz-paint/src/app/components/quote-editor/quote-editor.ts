@@ -44,6 +44,10 @@ export class QuoteEditor implements OnInit {
       if (quoteSnap.exists()) {
         const data = quoteSnap.data() as QuoteInterface; //cast data from firestore to QuoteInterface
         //assign to local variables to see in the editor
+        this.quoteData.customerCity = data.customerCity;
+        this.quoteData.customerPhoneNumber = data.customerPhoneNumber;
+        this.quoteData.customerStreetAddress = data.customerStreetAddress;
+        this.quoteData.customerZipCode = data.customerZipCode;
         this.quoteData.quoteName = data.quoteName;
         this.quoteData.numberOfRooms = data.numberOfRooms;
         this.quoteData.totalPrice = data.totalPrice;
@@ -127,10 +131,7 @@ export class QuoteEditor implements OnInit {
     this.quoteData.rooms = collectedRooms;
     this.quoteData.customerId = this.generateCustomerId();
     this.quoteData.dateModified = new Date().toISOString();
-    this.quoteData.customerStreetAddress = '6969 Test St'
-    this.quoteData.customerZipCode = '12345'
-    this.quoteData.customerCity = 'Testville'
-    this.quoteData.customerPhoneNumber = '555-123-4567'
+    
 
 
     const quoteDocId = this.appState.currentQuoteId()?.toString();
