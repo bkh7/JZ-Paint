@@ -5,6 +5,7 @@ import { AppStateService } from '../../services/app-state';
 import html2pdf from 'html2pdf.js';
 import { DefaultButton } from '../default-button/default-button';
 import { BackButton } from '../back-button/back-button';
+import { RoomInterface } from '../../interfaces/room-interface';
 
 @Component({
   selector: 'quote-pdf',
@@ -46,6 +47,45 @@ editQuote() {
 
   this.appState.currentView.set('quote-editor');
 
+}
+
+getPaintedParts(room: RoomInterface): string[] {
+  const parts: string[] = [];
+  // Walls: check length, width, and height
+  if (
+    room.wallLength && +room.wallLength > 0 &&
+    room.wallWidth && +room.wallWidth > 0 &&
+    room.wallHeight && +room.wallHeight > 0
+  ) {
+    parts.push('walls');
+  }
+  // Ceiling: check length and width
+  if (
+    room.ceilingLength && +room.ceilingLength > 0 &&
+    room.ceilingWidth && +room.ceilingWidth > 0
+  ) {
+    parts.push('ceiling');
+  }
+  // Trim: check length and width
+  if (
+    room.trimLength && +room.trimLength > 0 &&
+    room.trimWidth && +room.trimWidth > 0
+  ) {
+    parts.push('trim');
+  }
+  // Door faces
+  if (room.numDoorFaces && +room.numDoorFaces > 0) {
+    parts.push(`${room.numDoorFaces} door face${+room.numDoorFaces > 1 ? 's' : ''}`);
+  }
+  // Door frames
+  if (room.numDoorFrames && +room.numDoorFrames > 0) {
+    parts.push(`${room.numDoorFrames} door frame${+room.numDoorFrames > 1 ? 's' : ''}`);
+  }
+  // Window frames
+  if (room.numWindowFrames && +room.numWindowFrames > 0) {
+    parts.push(`${room.numWindowFrames} window frame${+room.numWindowFrames > 1 ? 's' : ''}`);
+  }
+  return parts;
 }
 
 }

@@ -68,6 +68,145 @@
         </table>
         <!-- ...existing code... -->
     </div>
+    <div class="residential-painting-agreement">
+
+        <h1>Residential Painting Agreement</h1>
+
+        <p>This Agreement is between:</p>
+
+        <p><strong>Contractor:</strong> <span class="underline-field">Jake Zuiderveen</span></p>
+        <p><strong>Business Name:</strong> <span class="underline-field">JZ Paint</span></p>
+        <p><strong>Phone:</strong> <span class="underline-field">(269)-352-6924</span></p>
+        <p><strong>Client:</strong> <span class="underline-field">{{quoteData?.quoteName}}</span></p>
+        <p><strong>Property Address:</strong> <span class="underline-field">{{quoteData?.customerStreetAddress}},
+                {{quoteData?.customerCity}}, {{quoteData?.customerZipCode}}</span></p>
+        <p><strong>Estimated Start Date:</strong> <span class="underline-field">{{quoteData?.startDate}}</span></p>
+
+        <h3>1. Scope of Work</h3>
+
+        <p>
+            Contractor will provide professional painting services at the Property listed above as follows:
+        </p>
+
+        <p>
+            <strong>Areas to be painted (rooms, trim, exterior, etc.):</strong><br>
+            <ng-container *ngIf="quoteData?.rooms?.length; else blankLine">
+                <span *ngFor="let room of quoteData.rooms" class="underline-field" style="margin-right: 0.5em;">
+                    {{ room.roomName }}
+                    <ng-container *ngIf="getPaintedParts(room).length">
+                        ({{ getPaintedParts(room).join(', ') }})
+                    </ng-container>
+                </span>
+            </ng-container>
+            <ng-template #blankLine>
+                <span class="underline-field">&nbsp;</span>
+            </ng-template>
+        </p>
+        <p>
+            <strong>Paint and materials</strong><br>
+            <strong>Brand:</strong>
+            <span class="underline-field">{{ quoteData?.paintBrand || '\u00A0' }}</span>
+            &nbsp;&nbsp;
+            <strong>Sheen:</strong>
+            <span class="underline-field">{{ quoteData?.sheen || '\u00A0' }}</span>
+        </p>
+
+        <p><strong>Color(s):</strong> <span class="underline-field">{{ quoteData?.colors || '\u00A0' }}</span></p>
+
+        <p><strong>Number of coats (minimum 2 unless noted):</strong> <span class="underline-field">{{
+                quoteData?.numberOfCoats || '\u00A0' }}</span></p>
+
+        <p>
+            Any work not listed above is not included in this Agreement.
+        </p>
+
+        <h3>2. Price and Payment</h3>
+
+        <p><strong>Total price for the work described above:</strong> <span
+                class="underline-field">${{quoteData?.totalPrice}}</span></p>
+
+        <p><strong>Payment terms:</strong></p>
+
+        <p>
+            <strong>Deposit:</strong>
+            $<span class="underline-field">{{ quoteData?.expectedDeposit || '\u00A0' }}</span><br>
+            due upon signing
+        </p>
+
+        <p>
+            <strong>Final payment:</strong>
+            $<span class="underline-field">
+                {{
+                (quoteData?.totalPrice && quoteData?.expectedDeposit)
+                ? (+quoteData.totalPrice - +quoteData.expectedDeposit | number:'1.2-2')
+                : '\u00A0'
+                }}
+            </span><br>
+            due upon substantial completion
+        </p>
+
+        <p>
+            All payments are due within
+            <span class="underline-field">30</span>
+            days of invoice.
+            Late payments may be subject to a late fee of
+            <span class="underline-field">13</span>% per month on overdue balances.
+        </p>
+
+        <p>
+            Any extra work or changes requested by Client that are not listed in the Scope of Work will require a
+            written change order and may increase the price and extend the timeline.
+        </p>
+
+        <p>
+            If Client cancels after materials are purchased or work has started, Client agrees to pay for materials
+            purchased for this job and work completed up to the cancellation date.
+        </p>
+
+        <h3>3. Responsibilities</h3>
+
+        <p>
+            Client will clear work areas, provide access to the Property, and ensure utilities (power, water, reasonable
+            heat/cooling) are available during the project.
+        </p>
+
+        <p>
+            Contractor will maintain a neat work area and will remove project-related debris and leave work areas broom
+            clean at completion.
+        </p>
+
+        <h3>4. Signatures</h3>
+
+        <p>
+            By signing below, Contractor and Client agree to the terms of this Residential Painting Agreement.
+        </p>
+
+        <p>
+            <strong>Contractor Signature:</strong>
+            <span class="underline-field"
+                style="vertical-align: middle; display: inline-block; min-width: 220px; min-height: 40px;">
+                <img src="ph-sig.png" alt="Contractor Signature"
+                    style="height: 36px; max-width: 200px; vertical-align: middle;">
+            </span>
+        </p>
+        <p>
+            <strong>Date:</strong>
+            <span class="underline-field">
+                {{ quoteData?.dateModified | date:'MM/dd/yyyy' }}
+            </span>
+        </p>
+
+        <p>
+            <strong>Client Signature:</strong>
+            ________________________________
+        </p>
+        <p>
+            <strong>Date:</strong>
+            ________________________________
+        </p>
+
+    </div>
+
 </div>
 
 <div class="download-button-container">

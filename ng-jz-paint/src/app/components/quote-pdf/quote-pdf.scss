@@ -114,3 +114,29 @@ h5 {
     
     margin: 5px; /* spacing between buttons */
 }
+
+.underline-field {
+    display: inline-block;
+    min-width: 180px; /* adjust as needed */
+    border-bottom: 1px solid #222;
+    padding: 2px 4px;
+    margin-left: 4px;
+    font-weight: normal;
+}
+
+/* Prevent page breaks inside these elements */
+.pdf, 
+.residential-painting-agreement, 
+.header, 
+.table-container, 
+.items-table, 
+h1, h2, h3, h4, h5, h6, p, .underline-field {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* Optionally, force a page break before/after certain sections */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}

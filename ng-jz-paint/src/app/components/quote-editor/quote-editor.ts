@@ -27,6 +27,13 @@ export class QuoteEditor implements OnInit {
     customerPhoneNumber: '',
     numberOfRooms: '0',
     totalPrice: '0',
+    //quote details
+    paintBrand: '',
+    sheen: '',
+    colors: '',
+    numberOfCoats: '',
+    expectedDeposit: '',
+    startDate: '',
     rooms: [], // Start with one room
   };
 
@@ -51,6 +58,12 @@ export class QuoteEditor implements OnInit {
         this.quoteData.quoteName = data.quoteName;
         this.quoteData.numberOfRooms = data.numberOfRooms;
         this.quoteData.totalPrice = data.totalPrice;
+        this.quoteData.paintBrand = data.paintBrand;
+        this.quoteData.sheen = data.sheen;
+        this.quoteData.colors = data.colors;
+        this.quoteData.numberOfCoats = data.numberOfCoats;
+        this.quoteData.expectedDeposit = data.expectedDeposit;
+        this.quoteData.startDate = data.startDate;
         this.quoteData.rooms = Array.isArray(data.rooms) && data.rooms.length > 0
           ? data.rooms //create empty room if no rooms exist
           : [this.createRoom()];

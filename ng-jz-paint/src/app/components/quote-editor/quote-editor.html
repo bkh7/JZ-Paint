@@ -25,6 +25,16 @@
         <default-input [(value)]="quoteData.customerPhoneNumber" placeholder="Customer Phone Number:"></default-input>
     </div>
 
+    <div class="quote-details">
+        <default-input [(value)]="quoteData.paintBrand"
+            placeholder="Paint Brand:"></default-input>
+        <default-input [(value)]="quoteData.sheen" placeholder="Sheen:"></default-input>
+        <default-input [(value)]="quoteData.colors" placeholder="Colors:"></default-input>
+        <default-input [(value)]="quoteData.numberOfCoats" placeholder="Number of Coats:"></default-input>
+        <default-input [(value)]="quoteData.expectedDeposit" placeholder="Expected Deposit:"></default-input>
+        <default-input [(value)]="quoteData.startDate" placeholder="Start Date:"></default-input>
+    </div>
+
 
     <div class="rooms-container">
         <room *ngFor="let room of quoteData.rooms" [roomData]="room"></room> <!-- Loop over rooms array -->

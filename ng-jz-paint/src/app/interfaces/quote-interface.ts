@@ -12,6 +12,14 @@ export interface QuoteInterface {
     numberOfRooms: string;
     totalPrice: string;
 
+    //quote details
+    paintBrand: string;
+    sheen: string;
+    colors: string;
+    numberOfCoats: string;
+    expectedDeposit: string;
+    startDate: string;
+
     rooms: RoomInterface[];
 
 }
