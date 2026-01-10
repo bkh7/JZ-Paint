@@ -24,3 +24,21 @@
    background-color: var(--jz-light-blue);
    cursor: pointer;
 }
+
+@media (max-width: 700px) {
+    .quote-card {
+        flex-direction: column;
+        width: 95%;
+        padding: 16px;
+        align-items: center;      /* Center content inside the card */
+        margin: 15px auto;        /* Ensure the card itself is centered */
+        box-sizing: border-box;
+        text-align: center;       /* Center text inside the card */
+    }
+    .quote-card h2,
+    .quote-card p {
+        text-align: center;       /* Center text for headings and paragraphs */
+        width: 100%;
+        margin: 0 0 8px 0;
+    }
+}

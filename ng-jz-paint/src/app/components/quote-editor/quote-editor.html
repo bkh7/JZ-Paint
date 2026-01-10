@@ -40,17 +40,17 @@
         <room *ngFor="let room of quoteData.rooms" [roomData]="room"></room> <!-- Loop over rooms array -->
     </div>
 
-    <div class="addRoomContainer">
-        <default-button text="+ ADD ROOM" (click)="addEmptyRoom()"></default-button>
-        <default-button text="+ ADD ROOM (10 x 10 x 8)" (click)="addTenByTenRoom()"></default-button>
-    </div>
-
-    <div class="save-container">
-        <default-button text="SAVE QUOTE" (click)="saveQuote()"></default-button>
-    </div>
-
-    <div class="delete-container">
-        <default-button text="DELETE QUOTE" (click)="requestDelete()" class="red-button"></default-button>
+    <div class="actions-container">
+        <div class="addRoomContainer">
+            <default-button text="+ ADD ROOM" (click)="addEmptyRoom()"></default-button>
+            <default-button text="+ ADD ROOM (10 x 10 x 8)" (click)="addTenByTenRoom()"></default-button>
+        </div>
+        <div class="save-container">
+            <default-button text="SAVE QUOTE" (click)="saveQuote()"></default-button>
+        </div>
+        <div class="delete-container">
+            <default-button text="DELETE QUOTE" (click)="requestDelete()" class="red-button"></default-button>
+        </div>
     </div>
 
 </div>
