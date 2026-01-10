@@ -1,19 +1,23 @@
+
 .main-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .quote-card{
-    width: 100%;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 15px;
+    margin: 15px auto;
+    width: 600px;
+    align-items: center;
 }
 
 .quote-card:hover{
