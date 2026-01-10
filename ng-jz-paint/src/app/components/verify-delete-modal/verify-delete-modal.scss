@@ -24,3 +24,10 @@
     width: 300px;
     text-align: center;
 }
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px; // Adjust the space as needed
+    margin-top: 20px; // Optional: adds space above the buttons
+}
