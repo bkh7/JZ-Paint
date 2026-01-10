@@ -8,10 +8,11 @@ import { Firestore, collection, doc, addDoc, getDoc, getDocs, setDoc } from '@an
 import { CommonModule } from '@angular/common';
 import { AppStateService } from '../../services/app-state';
 import { VerifyDeleteModal } from '../verify-delete-modal/verify-delete-modal';
+import { BackButton } from '../back-button/back-button';
 
 @Component({
   selector: 'quote-editor',
-  imports: [DefaultInput, Room, DefaultButton, CommonModule, VerifyDeleteModal],
+  imports: [DefaultInput, Room, DefaultButton, CommonModule, VerifyDeleteModal, BackButton],
   templateUrl: './quote-editor.html',
   styleUrl: './quote-editor.scss',
 })

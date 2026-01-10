@@ -21,6 +21,7 @@ export class QuotesView {
 
   handleExistingClick(quoteId: string){
 
+    this.appState.previousView.set(this.appState.currentView());
     this.appState.currentView.set('quote-pdf');
     this.appState.currentQuoteId.set(quoteId);
 
@@ -28,6 +29,7 @@ export class QuotesView {
 
    handleNewClick(quoteId: string){
 
+    this.appState.previousView.set(this.appState.currentView());
     this.appState.currentView.set('quote-editor');
     this.appState.currentQuoteId.set(quoteId);
 

@@ -4,10 +4,11 @@ import { Firestore, doc, docData } from '@angular/fire/firestore';
 import { AppStateService } from '../../services/app-state';
 import html2pdf from 'html2pdf.js';
 import { DefaultButton } from '../default-button/default-button';
+import { BackButton } from '../back-button/back-button';
 
 @Component({
   selector: 'quote-pdf',
-  imports: [CommonModule, DefaultButton],
+  imports: [CommonModule, DefaultButton, BackButton],
   templateUrl: './quote-pdf.html',
   styleUrl: './quote-pdf.scss',
 })
