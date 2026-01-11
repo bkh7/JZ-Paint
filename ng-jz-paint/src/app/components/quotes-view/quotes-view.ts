@@ -35,4 +35,10 @@ export class QuotesView {
 
   }
 
+  handleSettingsClick(){
+
+    this.appState.previousView.set(this.appState.currentView());
+    this.appState.currentView.set('settings');
+  }
+
 }

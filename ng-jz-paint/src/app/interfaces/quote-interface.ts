@@ -19,6 +19,7 @@ export interface QuoteInterface {
     numberOfCoats: string;
     expectedDeposit: string;
     startDate: string;
+    paymentStatusID: string;
 
     rooms: RoomInterface[];
 

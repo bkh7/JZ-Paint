@@ -5,12 +5,13 @@
     <div *ngIf="(quotes$ | async) as quotesList">
         <div *ngFor="let quote of quotesList" class="quote-card" (click)="handleExistingClick(quote.id)">
             <h2>Quote For: {{quote.quoteName}}</h2>
-            <p>Quoted Price: ${{quote.totalPrice}}</p>
+            <p>Quoted Price: ${{ (quote.totalPrice * 1.06) | number:'1.2-2' }}</p>
         </div>
 
     </div>
 
     <default-button text="+ NEW QUOTE" (click)="handleNewClick('')"></default-button>
+    <default-button text="SETTINGS" (click)="handleSettingsClick()" class="settings-button"></default-button>
 
 
 

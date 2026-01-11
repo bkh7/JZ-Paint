@@ -16,6 +16,7 @@ import { RoomInterface } from '../../interfaces/room-interface';
 export class QuotePdf implements OnInit {
 
   quoteData: any;
+  settingsData: any;
 
   constructor(private firestore: Firestore, public appState: AppStateService) { }
 
@@ -25,6 +26,12 @@ export class QuotePdf implements OnInit {
       const quoteDoc = doc(this.firestore, `quotes/${documentId}`);
       docData(quoteDoc).subscribe(data => {
         this.quoteData = data;
+      });
+    }
+    if (true) {
+      const settingsDoc = doc(this.firestore, `settings/appSettings`);
+      docData(settingsDoc).subscribe(settingsData => {
+        this.settingsData = settingsData;
       });
     }
   }

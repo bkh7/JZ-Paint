@@ -123,7 +123,7 @@
         <h3>2. Price and Payment</h3>
 
         <p><strong>Total price for the work described above:</strong> <span
-                class="underline-field">${{quoteData?.totalPrice}}</span></p>
+                class="underline-field">${{ (quoteData.totalPrice * 1.06) | number:'1.2-2' }}</span></p>
 
         <p><strong>Payment terms:</strong></p>
 
@@ -138,7 +138,7 @@
             $<span class="underline-field">
                 {{
                 (quoteData?.totalPrice && quoteData?.expectedDeposit)
-                ? (+quoteData.totalPrice - +quoteData.expectedDeposit | number:'1.2-2')
+                ? ((+quoteData.totalPrice * 1.06) - +quoteData.expectedDeposit | number:'1.2-2')
                 : '\u00A0'
                 }}
             </span><br>
@@ -147,10 +147,10 @@
 
         <p>
             All payments are due within
-            <span class="underline-field">30</span>
+            <span class="underline-field">{{ settingsData?.timeToPaymentDue }}</span>
             days of invoice.
             Late payments may be subject to a late fee of
-            <span class="underline-field">13</span>% per month on overdue balances.
+            <span class="underline-field">{{ settingsData?.percentageLateFee }}</span>% per month on overdue balances.
         </p>
 
         <p>

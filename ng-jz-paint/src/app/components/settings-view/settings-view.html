@@ -1,0 +1,23 @@
+<back-button></back-button>
+
+<div class="settings-container">
+
+    <div class="row">
+        <default-input placeholder="Wall Price Per Sqft" [(value)]="settings.wallPricePerSqft"></default-input>
+        <default-input placeholder="Ceiling Price Per Sqft" [(value)]="settings.ceilingPricePerSqft"></default-input>
+        <default-input placeholder="Trim Price Per Sqft" [(value)]="settings.trimPricePerSqft"></default-input>
+    </div>
+
+    <div class="row">
+        <default-input placeholder="Price Per Door Face" [(value)]="settings.pricePerDoorFace"></default-input>
+        <default-input placeholder="Price Per Door Frame" [(value)]="settings.pricePerDoorFrame"></default-input>
+        <default-input placeholder="Price Per Window Frame" [(value)]="settings.pricePerWindowFrame"></default-input>
+    </div>
+
+    <div class="row">
+        <default-input placeholder="Payment due X days after signing" [(value)]="settings.timeToPaymentDue"></default-input>
+        <default-input placeholder="Late fee percentage (per month)" [(value)]="settings.percentageLateFee"></default-input>
+    </div>
+
+    <default-button (click)="saveSettings()" text="SAVE"></default-button>
+</div>

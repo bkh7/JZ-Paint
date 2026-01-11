@@ -9,10 +9,11 @@ import { CommonModule } from '@angular/common';
 import { QuotesView } from './components/quotes-view/quotes-view';
 import { VerifyDeleteModal } from './components/verify-delete-modal/verify-delete-modal';
 import { QuotePdf } from './components/quote-pdf/quote-pdf';
+import { SettingsView } from './components/settings-view/settings-view';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, QuoteEditor, CommonModule, QuotesView,  QuotePdf],
+  imports: [RouterOutlet, QuoteEditor, CommonModule, QuotesView,  QuotePdf, SettingsView],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -23,6 +24,6 @@ export class App implements OnInit{
 
   ngOnInit() {
     this.appState.currentView.set('quotes-list');
-    console.log('App initialized, current view set to quote-pdf');
+    console.log('App initialized, current view set to settings');
   }
 }

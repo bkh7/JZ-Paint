@@ -1,6 +1,9 @@
 import { Component, HostListener, ElementRef, Input } from '@angular/core';
 import { DefaultInput } from '../default-input/default-input';
 import { RoomInterface } from '../../interfaces/room-interface';
+import { OnInit } from '@angular/core';
+import {Firestore, collection, doc, addDoc, getDoc, setDoc, deleteDoc } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'room',
@@ -8,7 +11,7 @@ import { RoomInterface } from '../../interfaces/room-interface';
   templateUrl: './room.html',
   styleUrl: './room.scss',
 })
-export class Room {
+export class Room implements OnInit {
 
   @Input() roomData!: RoomInterface;
 
@@ -28,7 +31,24 @@ export class Room {
   pricePerWindowFrame: number = 40.00;
   
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private firestore: Firestore) {}
+
+  async ngOnInit() {
+    const quoteRef = doc(this.firestore, 'settings', 'appSettings');
+          const quoteSnap = await getDoc(quoteRef); //get current quote document
+    
+          if (quoteSnap.exists()) {
+            const data = quoteSnap.data();
+            this.wallPricePerSqft = parseFloat(data['wallPricePerSqft']);
+            this.ceilingPricePerSqft = parseFloat(data['ceilingPricePerSqft']);
+            this.trimPricePerSqft = parseFloat(data['trimPricePerSqft']);
+            this.pricerPerDoorFace = parseFloat(data['pricePerDoorFace']);
+            this.pricePerDoorFrame = parseFloat(data['pricePerDoorFrame']);
+            this.pricePerWindowFrame = parseFloat(data['pricePerWindowFrame']);
+          }
+          this.calculateSqft();
+          this.calculatePrice();
+  }
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {

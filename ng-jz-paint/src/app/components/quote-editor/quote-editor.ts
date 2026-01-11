@@ -9,10 +9,11 @@ import { CommonModule } from '@angular/common';
 import { AppStateService } from '../../services/app-state';
 import { VerifyDeleteModal } from '../verify-delete-modal/verify-delete-modal';
 import { BackButton } from '../back-button/back-button';
+import { WarningModal } from '../warning-modal/warning-modal';
 
 @Component({
   selector: 'quote-editor',
-  imports: [DefaultInput, Room, DefaultButton, CommonModule, VerifyDeleteModal, BackButton],
+  imports: [DefaultInput, Room, DefaultButton, CommonModule, VerifyDeleteModal, BackButton, WarningModal],
   templateUrl: './quote-editor.html',
   styleUrl: './quote-editor.scss',
 })
@@ -34,8 +35,12 @@ export class QuoteEditor implements OnInit {
     numberOfCoats: '',
     expectedDeposit: '',
     startDate: '',
+    paymentStatusID: '',
     rooms: [], // Start with one room
   };
+
+  quotePID: string = '';
+  appSettingsPID: string = '';
 
 
   @ViewChildren(Room) roomComponents!: QueryList<Room>; // Queries all <room> components
@@ -43,6 +48,7 @@ export class QuoteEditor implements OnInit {
   constructor(private firestore: Firestore, public appState: AppStateService) { } // Added constructor for Firestore
 
   async ngOnInit() {
+    this.arePriceSettingsValid();
     const quoteDocId = this.appState.currentQuoteId()?.toString(); //store current quote id from app state
     if (quoteDocId) {
       const quoteRef = doc(this.firestore, 'quotes', quoteDocId);
@@ -124,13 +130,13 @@ export class QuoteEditor implements OnInit {
       .map(word => word[0].toUpperCase())
       .join('');
 
-    while(i <= idLength - 2) {
+    while (i <= idLength - 2) {
       idNumber += Math.floor(Math.random() * 10).toString(); //number between 0-9
       i++;
     }
     id = customerInitials + idNumber;
     return id;
-      
+
   }
 
   async saveQuote() {
@@ -144,7 +150,8 @@ export class QuoteEditor implements OnInit {
     this.quoteData.rooms = collectedRooms;
     this.quoteData.customerId = this.generateCustomerId();
     this.quoteData.dateModified = new Date().toISOString();
-    
+    this.quoteData.paymentStatusID = (await this.generatePriceStatusID()).toString();
+
 
 
     const quoteDocId = this.appState.currentQuoteId()?.toString();
@@ -191,6 +198,44 @@ export class QuoteEditor implements OnInit {
   makeTitleNonEditable() {
     this.appState.quoteTitleEditable.set(false);
     console.log('Title editable set to false');
+  }
+
+  async generatePriceStatusID(): Promise<string> {
+    const docRef = doc(this.firestore, 'settings/appSettings');
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      return data['paymentStatusID'];
+    } else {
+      // Handle missing document
+      return '';
+    }
+  }
+
+  async arePriceSettingsValid() {
+    const docRef = doc(this.firestore, 'settings/appSettings');
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      this.appSettingsPID = data['paymentStatusID'];
+
+    }
+
+    const qDocRef = doc(this.firestore, 'quotes', this.appState.currentQuoteId() || '');
+    const quoteSnap = await getDoc(qDocRef);
+
+    if (quoteSnap.exists()) {
+      const quoteData = quoteSnap.data() as QuoteInterface;
+      this.quotePID = quoteData.paymentStatusID;
+  }
+  console.log('Checking', this.appSettingsPID, this.quotePID);
+  if (this.appSettingsPID == this.quotePID) {
+     this.appState.warningModalVisible.set(false);
+    }
+    else {
+    this.appState.warningModalVisible.set(true);
+    }
   }
 
 }
