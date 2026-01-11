@@ -39,6 +39,7 @@ export class QuotePdf implements OnInit {
 downloadPdf() {
   const element = document.querySelector('.pdf') as HTMLElement;
   if (element) {
+    element.classList.add('pdf-export'); // Add the class to disable mobile styles
     const opt = {
       margin:       [0, 0, 0, 0],
       filename:     `Quote for ${this.quoteData?.quoteName || 'quote'}.pdf`,
@@ -46,7 +47,9 @@ downloadPdf() {
       html2canvas:  { scale: 2, useCORS: true },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     } as any;
-    html2pdf().set(opt).from(element).save();
+    html2pdf().set(opt).from(element).save().then(() => {
+      element.classList.remove('pdf-export'); // Remove the class after export
+    });
   }
 }
 

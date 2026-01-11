@@ -151,41 +151,44 @@ h1, h2, h3, h4, h5, h6, p, .underline-field {
     box-sizing: border-box;
 }
 
-@media (max-width: 700px) {
+// Only apply mobile styles if NOT exporting PDF
+:not(.pdf-export) {
+  @media (max-width: 700px) {
     .pdf {
-        padding: 0.5rem;
-        width: 100vw;
-        max-width: 100vw;
-        font-size: 0.95rem;
-        box-sizing: border-box;
+      padding: 0.5rem;
+      width: 100vw;
+      max-width: 100vw;
+      font-size: 0.95rem;
+      box-sizing: border-box;
     }
     .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
     }
     .header-col-left,
     .header-col-right {
-        width: 100%;
-        align-items: flex-start;
-        text-align: left;
+      width: 100%;
+      align-items: flex-start;
+      text-align: left;
     }
     .table-container {
-        width: 100%;
-        overflow-x: unset; // Remove horizontal scroll
-        display: block;
+      width: 100%;
+      overflow-x: unset;
+      display: block;
     }
     .items-table {
-        font-size: 0.85rem;
-        min-width: unset; // Remove min-width restriction
-        width: 100%;      // Table always fills container
-        table-layout: fixed; // Columns auto-resize to fit
-        word-break: break-word;
+      font-size: 0.85rem;
+      min-width: unset;
+      width: 100%;
+      table-layout: fixed;
+      word-break: break-word;
     }
     .items-table th, .items-table td {
-        padding: 0.4rem 0.3rem;
-        font-size: 0.85rem;
-        word-break: break-word;
+      padding: 0.4rem 0.3rem;
+      font-size: 0.85rem;
+      word-break: break-word;
     }
+  }
 }
