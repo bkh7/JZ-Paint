@@ -3,20 +3,33 @@
 <div class="settings-container">
 
     <div class="row">
-        <default-input placeholder="Wall Price Per Sqft" [(value)]="settings.wallPricePerSqft"></default-input>
-        <default-input placeholder="Ceiling Price Per Sqft" [(value)]="settings.ceilingPricePerSqft"></default-input>
-        <default-input placeholder="Trim Price Per Sqft" [(value)]="settings.trimPricePerSqft"></default-input>
+        <div class="input-group">
+            <label for="wallPricePerSqft">Wall Price Per Sqft</label>
+            <default-input id="wallPricePerSqft" [(value)]="settings.wallPricePerSqft"></default-input>
+        </div>
+        <div class="input-group">
+            <label for="ceilingPricePerSqft">Ceiling Price Per Sqft</label>
+            <default-input id="ceilingPricePerSqft" [(value)]="settings.ceilingPricePerSqft"></default-input>
+        </div>
+        <div class="input-group">
+            <label for="trimPricePerSqft">Trim Price Per Sqft</label>
+            <default-input id="trimPricePerSqft" [(value)]="settings.trimPricePerSqft"></default-input>
+        </div>
     </div>
 
     <div class="row">
-        <default-input placeholder="Price Per Door Face" [(value)]="settings.pricePerDoorFace"></default-input>
-        <default-input placeholder="Price Per Door Frame" [(value)]="settings.pricePerDoorFrame"></default-input>
-        <default-input placeholder="Price Per Window Frame" [(value)]="settings.pricePerWindowFrame"></default-input>
-    </div>
-
-    <div class="row">
-        <default-input placeholder="Payment due X days after signing" [(value)]="settings.timeToPaymentDue"></default-input>
-        <default-input placeholder="Late fee percentage (per month)" [(value)]="settings.percentageLateFee"></default-input>
+        <div class="input-group">
+            <label for="pricePerDoorFace">Price Per Door Face</label>
+            <default-input id="pricePerDoorFace" [(value)]="settings.pricePerDoorFace"></default-input>
+        </div>
+        <div class="input-group">
+            <label for="pricePerDoorFrame">Price Per Door Frame</label>
+            <default-input id="pricePerDoorFrame" [(value)]="settings.pricePerDoorFrame"></default-input>
+        </div>
+        <div class="input-group">
+            <label for="pricePerWindowFrame">Price Per Window Frame</label>
+            <default-input id="pricePerWindowFrame" [(value)]="settings.pricePerWindowFrame"></default-input>
+        </div>
     </div>
 
     <default-button (click)="saveSettings()" text="SAVE"></default-button>
