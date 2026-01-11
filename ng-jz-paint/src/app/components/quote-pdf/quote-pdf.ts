@@ -20,21 +20,20 @@ export class QuotePdf implements OnInit {
 
   constructor(private firestore: Firestore, public appState: AppStateService) { }
 
-  ngOnInit() {
-    const documentId = this.appState.currentQuoteId();
-    if (true) {
-      const quoteDoc = doc(this.firestore, `quotes/${documentId}`);
-      docData(quoteDoc).subscribe(data => {
-        this.quoteData = data;
-      });
-    }
-    if (true) {
-      const settingsDoc = doc(this.firestore, `settings/appSettings`);
-      docData(settingsDoc).subscribe(settingsData => {
-        this.settingsData = settingsData;
-      });
-    }
-  }
+ngOnInit() {
+  const documentId = this.appState.currentQuoteId();
+  const quoteDoc = doc(this.firestore, `quotes/${documentId}`);
+  docData(quoteDoc).subscribe(data => {
+    console.log('quoteData:', data);
+    this.quoteData = data;
+  });
+
+  const settingsDoc = doc(this.firestore, `settings/appSettings`);
+  docData(settingsDoc).subscribe(settingsData => {
+    console.log('settingsData:', settingsData);
+    this.settingsData = settingsData;
+  });
+}
 
 downloadPdf() {
   const element = document.querySelector('.pdf') as HTMLElement;

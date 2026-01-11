@@ -147,10 +147,10 @@
 
         <p>
             All payments are due within
-            <span class="underline-field">{{ settingsData?.timeToPaymentDue }}</span>
+            <span class="underline-field">{{ settingsData?.timeToPaymentDue || '\u00A0'  }}</span>
             days of invoice.
             Late payments may be subject to a late fee of
-            <span class="underline-field">{{ settingsData?.percentageLateFee }}</span>% per month on overdue balances.
+            <span class="underline-field">{{ settingsData?.percentageLateFee || '\u00A0' }}</span>% per month on overdue balances.
         </p>
 
         <p>
