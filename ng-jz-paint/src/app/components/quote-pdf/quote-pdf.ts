@@ -60,26 +60,16 @@ editQuote() {
 
 getPaintedParts(room: RoomInterface): string[] {
   const parts: string[] = [];
-  // Walls: check length, width, and height
-  if (
-    room.wallLength && +room.wallLength > 0 &&
-    room.wallWidth && +room.wallWidth > 0 &&
-    room.wallHeight && +room.wallHeight > 0
-  ) {
+  // Walls: check wallArea
+  if (room.wallArea && +room.wallArea > 0) {
     parts.push('walls');
   }
-  // Ceiling: check length and width
-  if (
-    room.ceilingLength && +room.ceilingLength > 0 &&
-    room.ceilingWidth && +room.ceilingWidth > 0
-  ) {
+  // Ceiling: check ceilingArea
+  if (room.ceilingArea && +room.ceilingArea > 0) {
     parts.push('ceiling');
   }
-  // Trim: check length and width
-  if (
-    room.trimLength && +room.trimLength > 0 &&
-    room.trimWidth && +room.trimWidth > 0
-  ) {
+  // Trim: check trimArea
+  if (room.trimArea && +room.trimArea > 0) {
     parts.push('trim');
   }
   // Door faces
@@ -98,3 +88,4 @@ getPaintedParts(room: RoomInterface): string[] {
 }
 
 }
+  

@@ -100,12 +100,15 @@ parseFeetInches(value: string): number {
   calculateSqft() {
     const ceilingArea = this.parseFeetInches(this.roomData.ceilingLength) * this.parseFeetInches(this.roomData.ceilingWidth);
     this.ceilingSqft = ceilingArea;
+    this.roomData.ceilingArea = ceilingArea.toString();
 
     const wallArea = 2 * (this.parseFeetInches(this.roomData.wallLength) + this.parseFeetInches(this.roomData.wallWidth)) * this.parseFeetInches(this.roomData.wallHeight);
     this.wallSqft = wallArea;
+    this.roomData.wallArea = wallArea.toString();
 
     const trimArea = this.parseFeetInches(this.roomData.trimLength) * this.parseFeetInches(this.roomData.trimWidth);
     this.trimSqft = trimArea;
+    this.roomData.trimArea = trimArea.toString();
   }
 
 
