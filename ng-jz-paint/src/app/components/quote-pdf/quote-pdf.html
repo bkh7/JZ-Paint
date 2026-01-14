@@ -52,7 +52,7 @@
                 <tr *ngFor="let room of quoteData?.rooms">
                     <td>{{ room.roomName }}</td>
                     <td>1</td>
-                    <td>${{ room.totalRoomPrice }}</td>
+                    <td>${{ room.totalRoomPrice | number:'1.2-2' }}</td>
                     <td>${{+room.totalRoomPrice * 0.06 | number:'1.2-2'}}</td>
                     <td>${{ (+room.totalRoomPrice + (+room.totalRoomPrice * 0.06)) | number:'1.2-2' }}</td>
                 </tr>

@@ -12,7 +12,7 @@
         <default-input [(value)]="roomData.ceilingWidth" placeholder="Width (ft)"
             (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{ceilingSqft}} SQFT for a total of ${{roomData.ceilingPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{ceilingSqft | number:'1.2-2'}} SQFT for a total of ${{roomData.ceilingPrice | number:'1.2-2'}}</h3>
     </div>
 
     <div class="row">
@@ -23,7 +23,7 @@
         <h3>X</h3>
         <default-input [(value)]="roomData.wallHeight" placeholder="Height (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{wallSqft}} SQFT for a total of ${{roomData.wallPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{wallSqft | number:'1.2-2'}} SQFT for a total of ${{roomData.wallPrice | number:'1.2-2'}}</h3>
     </div>
 
     <div class="row">
@@ -32,7 +32,7 @@
         <h3>X</h3>
         <default-input [(value)]="roomData.trimWidth" placeholder="Width (ft)" (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{trimSqft}} SQFT for a total of ${{roomData.trimPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{trimSqft | number:'1.2-2'}} SQFT for a total of ${{roomData.trimPrice | number:'1.2-2'}}</h3>
     </div>
 
     <div class="row">
@@ -46,11 +46,11 @@
         <default-input [(value)]="roomData.numWindowFrames" placeholder="# of Window Frames"
             (valueChange)="onValueChange()"></default-input>
         <h3>=</h3>
-        <h3 style="margin-left: 15px;">{{roomData.numAddons}} addons for a total of ${{roomData.addonTotalPrice}}</h3>
+        <h3 style="margin-left: 15px;">{{roomData.numAddons}} addons for a total of ${{roomData.addonTotalPrice | number:'1.2-2'}}</h3>
     </div>
 
     <div class="row">
-        <h2>{{roomData.roomName}} Price: ${{roomData.totalRoomPrice}}</h2>
+        <h2>{{roomData.roomName}} Price: ${{roomData.totalRoomPrice | number:'1.2-2'}}</h2>
     </div>
 
 </div>

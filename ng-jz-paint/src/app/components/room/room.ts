@@ -3,13 +3,14 @@ import { DefaultInput } from '../default-input/default-input';
 import { RoomInterface } from '../../interfaces/room-interface';
 import { OnInit } from '@angular/core';
 import { Firestore, collection, doc, addDoc, getDoc, setDoc, deleteDoc } from '@angular/fire/firestore';
-
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'room',
-  imports: [DefaultInput],
+  imports: [DefaultInput, DecimalPipe],
   templateUrl: './room.html',
   styleUrl: './room.scss',
+  providers: [DecimalPipe]
 })
 export class Room implements OnInit {
 
