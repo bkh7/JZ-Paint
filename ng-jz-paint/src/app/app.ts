@@ -10,10 +10,22 @@ import { QuotesView } from './components/quotes-view/quotes-view';
 import { VerifyDeleteModal } from './components/verify-delete-modal/verify-delete-modal';
 import { QuotePdf } from './components/quote-pdf/quote-pdf';
 import { SettingsView } from './components/settings-view/settings-view';
+import { LoginView } from "./components/login-view/login-view";
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, QuoteEditor, CommonModule, QuotesView,  QuotePdf, SettingsView],
+  imports: [
+    RouterOutlet,
+    QuoteEditor,
+    CommonModule,
+    QuotesView,
+    QuotePdf,
+    SettingsView,
+    LoginView
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -23,7 +35,7 @@ export class App implements OnInit{
   constructor(public appState: AppStateService) {}
 
   ngOnInit() {
-    this.appState.currentView.set('quotes-list');
+    this.appState.currentView.set('login');
     console.log('App initialized, current view set to settings');
   }
 }
